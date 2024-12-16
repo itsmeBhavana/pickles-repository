@@ -1,0 +1,25 @@
+.footer {
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  text-decoration: none;
+}
+
+/* Responsive Footer Adjustments */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1rem;
+  }
+}

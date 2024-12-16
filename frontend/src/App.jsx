@@ -1,28 +1,43 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import VendorDashboard from "./pages/VendorDashboard";
+import PrivateRoute from "./PrivateRoute";
+import Login from "./pages/Login";
 import "./App.css";
-import axios from "axios";
+import { AuthProvider } from "./AuthContext";
 
 function App() {
-  const [pickles, setPickles] = useState([]);
-  useEffect(() => {
-    const fetchPickles = async () => {
-      const { data } = await axios.get("http://localhost:3000/api/v1/pickles", {
-        withCredentials: true,
-      });
-      setPickles(data.data);
-    };
-    fetchPickles();
-  }, []);
-  if (!pickles) return;
   return (
-    pickles && (
-      <>
-        <h1>Pickle Store</h1>
-        {pickles.map((pickle) => (
-          <h1>{pickle.name}</h1>
-        ))}
-      </>
-    )
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            {/* Secured Vendor Route */}
+            <Route
+              path="/vendor"
+              element={
+                <PrivateRoute allowedRoles={["vendor"]}>
+                  <VendorDashboard />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Secured Admin Route */}
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
