@@ -25,6 +25,10 @@ export const createPickle = async (req, res) => {
     const response = await createPickleRepository({
       name: req.body.name,
       description: req.body.description,
+      quantity: req.body.quantity,
+      price: req.body.price,
+      imageUrl: req.body.imageUrl,
+      category: req.body.category,
     });
     return res.status(200).json({
       data: response,

@@ -9,6 +9,18 @@ const pickleSchema = mongoose.Schema({
   description: {
     type: String,
   },
+  quantity: {
+    type: Number,
+  },
+  price: {
+    type: Number,
+  },
+  imageUrl: {
+    type: String,
+  },
+  category: {
+    type: String,
+  },
 });
 
 const Pickle = mongoose.model("Pickle", pickleSchema);

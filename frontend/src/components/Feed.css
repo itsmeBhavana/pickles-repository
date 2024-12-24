@@ -1,52 +1,85 @@
 .feed {
-  padding: 2rem 1rem;
-  text-align: center;
   width: 100%;
-  box-sizing: border-box;
+  max-width: 1200px; /* Optional: Limits the max width of the feed */
+  margin: 0 auto; /* Center the feed on larger screens */
+  padding: 1rem;
+}
+
+.category-section {
+  margin-bottom: 2rem;
+}
+
+.category-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #e76f51;
 }
 
 .pickle-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  box-sizing: border-box; /* Ensures padding doesn't overflow the container */
 }
 
 .pickle-card {
-  background-color: white;
-  padding: 1rem;
+  background-color: #f8f8f8;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  padding: 1rem;
+  text-align: center;
+  box-sizing: border-box; /* Ensures padding is within card boundaries */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* Prevents content from flowing outside card */
 }
 
 .pickle-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .pickle-image {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
-/* Adjust grid for larger screens */
-@media (min-width: 1920px) {
-  .pickle-grid {
-    max-width: 1600px;
+.pickle-card h3 {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.pickle-card p {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.text-green-700 {
+  color: #2a9d8f;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .feed {
+    padding: 1rem;
+  }
+
+  .category-title {
+    font-size: 1.25rem;
   }
 }
 
-/* Single-column layout for small screens */
 @media (max-width: 480px) {
-  .pickle-grid {
-    grid-template-columns: 1fr;
+  .pickle-card h3 {
+    font-size: 1rem;
   }
 
-  .pickle-card {
-    font-size: 0.9rem;
+  .pickle-card p {
+    font-size: 0.75rem;
   }
 }

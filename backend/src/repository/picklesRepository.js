@@ -1,8 +1,22 @@
 import Pickle from "../schema/pickle.js";
 
-export const createPickle = async ({ name, description }) => {
+export const createPickle = async ({
+  name,
+  description,
+  price,
+  quantity,
+  imageUrl,
+  category,
+}) => {
   try {
-    const pickle = await Pickle.create({ name, description });
+    const pickle = await Pickle.create({
+      name,
+      description,
+      price,
+      quantity,
+      imageUrl,
+      category,
+    });
     return pickle;
   } catch (error) {
     throw error;

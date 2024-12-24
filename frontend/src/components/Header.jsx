@@ -6,7 +6,10 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        <h1 className="store-title">The Pickle Store</h1>
+        <img src="/logo.png" alt="logo" className="logo" />
+        <h1 className="store-title">Mom Made Pickles</h1>
+      </div>
+      <div className="nav-container">
         <nav>
           <ul className="nav-links">
             <li>

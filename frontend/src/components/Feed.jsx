@@ -4,6 +4,7 @@ import "./Feed.css";
 
 const Feed = () => {
   const [pickles, setPickles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPickles = async () => {
@@ -13,36 +14,52 @@ const Feed = () => {
           { withCredentials: true }
         );
         setPickles(data.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching pickles:", error);
+        setLoading(false);
       }
     };
 
     fetchPickles();
   }, []);
+  if (loading) return <p>Loading pickles...</p>;
+
+  // Group pickles by category
+  const picklesByCategory = pickles.reduce((groups, pickle) => {
+    const { category } = pickle;
+    if (!groups[category]) {
+      groups[category] = [];
+    }
+    groups[category].push(pickle);
+    return groups;
+  }, {});
 
   return (
     <main className="feed" id="feed">
-      <h2>Our Pickles</h2>
-      <div className="pickle-grid">
-        {pickles.length > 0 ? (
-          pickles.map((pickle, index) => (
-            <div key={index} className="pickle-card">
-              <img
-                src={pickle.image}
-                alt={pickle.name}
-                className="pickle-image"
-              />
-              <h3>{pickle.name}</h3>
-              <p>{pickle.description}</p>
-              <p>
-                <strong>Flavor:</strong> {pickle.flavor}
-              </p>
+      <div>
+        <h2>Menu</h2>
+        {Object.keys(picklesByCategory).map((category) => (
+          <div key={category} className="category-section">
+            <h2 className="category-title">Our {category}s</h2>
+            <div className="pickle-grid">
+              {picklesByCategory[category].map((pickle) => (
+                <div key={pickle.name} className="pickle-card">
+                  <img
+                    src={pickle.imageUrl}
+                    alt={pickle.name}
+                    className="pickle-image"
+                  />
+                  <h3 className="text-xl font-bold">{pickle.name}</h3>
+                  <p>{pickle.description}</p>
+                  <p className="text-green-700 font-semibold">
+                    {pickle.quantity}gms: Rs{pickle.price}/-
+                  </p>
+                </div>
+              ))}
             </div>
-          ))
-        ) : (
-          <p>Loading pickles...</p>
-        )}
+          </div>
+        ))}
       </div>
     </main>
   );

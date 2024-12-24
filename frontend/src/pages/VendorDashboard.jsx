@@ -5,7 +5,10 @@ const VendorDashboard = () => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
+    quantity: "",
     price: "",
+    imageUrl: "",
+    category: "",
   });
 
   const [message, setMessage] = useState("");
@@ -27,9 +30,14 @@ const VendorDashboard = () => {
           },
         }
       );
-
-      setMessage(`Pickle "${response.data.name}" added successfully!`);
-      setFormData({ name: "", description: "", price: "" }); // Reset form
+      setMessage(`Pickle "${response.name}" added successfully!`);
+      setFormData({
+        name: "",
+        description: "",
+        price: "",
+        imageUrl: "",
+        quantity: "",
+      }); // Reset form
     } catch (error) {
       console.error(error);
       setMessage("Failed to add pickle. Please try again.");
@@ -40,6 +48,20 @@ const VendorDashboard = () => {
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium">Category</label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full border rounded p-2"
+            required
+          >
+            <option value="">Select a Category</option>
+            <option value="Pickle">Pickle</option>
+            <option value="Spice Powder">Spice Powder</option>
+          </select>
+        </div>
         <div>
           <label className="block text-sm font-medium">Pickle Name</label>
           <input
@@ -62,11 +84,33 @@ const VendorDashboard = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Price ($)</label>
+          <label className="block text-sm font-medium">Quantity (gm)</label>
+          <input
+            type="number"
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleChange}
+            className="w-full border rounded p-2"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Price (Rs)</label>
           <input
             type="number"
             name="price"
             value={formData.price}
+            onChange={handleChange}
+            className="w-full border rounded p-2"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Image Url</label>
+          <input
+            name="imageUrl"
+            type="text"
+            value={formData.imageUrl}
             onChange={handleChange}
             className="w-full border rounded p-2"
             required
