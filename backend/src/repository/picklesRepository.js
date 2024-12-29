@@ -40,3 +40,12 @@ export const getPickle = async (pickleId) => {
     throw error;
   }
 };
+
+export const deletePickle = async (pickleId) => {
+  try {
+    const pickle = await Pickle.findByIdAndDelete(pickleId);
+    return pickle;
+  } catch (error) {
+    throw error;
+  }
+};

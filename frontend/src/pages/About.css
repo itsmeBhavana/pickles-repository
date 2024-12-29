@@ -1,0 +1,83 @@
+/* About Section */
+.about-section {
+  padding: 2rem 1rem;
+  background-color: #f5f5dc;
+  color: #333;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f7f6e7;
+  border-radius: 8px;
+}
+
+.about-title {
+  font-size: 2rem;
+  color: #264653;
+  margin-bottom: 1rem;
+}
+
+.about-intro {
+  font-size: 1.2rem;
+  color: #2a9d8f;
+  margin-bottom: 1.5rem;
+}
+
+.about-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  color: #555;
+}
+
+.about-highlights {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.about-highlights li {
+  font-size: 1rem;
+  color: #e76f51;
+  margin: 0.5rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 1rem;
+  }
+
+  .about-title {
+    font-size: 1.75rem;
+  }
+
+  .about-intro {
+    font-size: 1.1rem;
+  }
+
+  .about-content p,
+  .about-highlights li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-intro {
+    font-size: 1rem;
+  }
+
+  .about-content p,
+  .about-highlights li {
+    font-size: 0.9rem;
+  }
+}

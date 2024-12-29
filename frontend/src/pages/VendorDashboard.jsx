@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./VendorDashboard.css";
+import { useNavigate } from "react-router-dom";
 
 const VendorDashboard = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -16,6 +19,11 @@ const VendorDashboard = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleLogout = () => {
+    // Optionally make an API call to the backend to clear cookies
+    navigate("/login"); // Redirect to login page
   };
 
   const handleSubmit = async (e) => {
@@ -45,10 +53,15 @@ const VendorDashboard = () => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+    <div className="dashboard-container">
+      <div>
+        <h1 className="dashboard-title">Admin Dashboard</h1>
+        <button onClick={handleLogout} className="logout-btn">
+          Logout
+        </button>
+      </div>
+      <form onSubmit={handleSubmit} className="dashboard-form">
+        <div className="form-group">
           <label className="block text-sm font-medium">Category</label>
           <select
             name="category"
@@ -62,7 +75,7 @@ const VendorDashboard = () => {
             <option value="Spice Powder">Spice Powder</option>
           </select>
         </div>
-        <div>
+        <div className="form-group">
           <label className="block text-sm font-medium">Pickle Name</label>
           <input
             type="text"
@@ -73,7 +86,7 @@ const VendorDashboard = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label className="block text-sm font-medium">Description</label>
           <textarea
             name="description"
@@ -83,8 +96,8 @@ const VendorDashboard = () => {
             required
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium">Quantity (gm)</label>
+        <div className="form-group">
+          <label>Quantity (gm)</label>
           <input
             type="number"
             name="quantity"
@@ -94,8 +107,8 @@ const VendorDashboard = () => {
             required
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium">Price (Rs)</label>
+        <div className="form-group">
+          <label>Price (Rs)</label>
           <input
             type="number"
             name="price"
@@ -105,8 +118,8 @@ const VendorDashboard = () => {
             required
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium">Image Url</label>
+        <div className="form-group">
+          <label>Image Url</label>
           <input
             name="imageUrl"
             type="text"
@@ -116,14 +129,11 @@ const VendorDashboard = () => {
             required
           />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
+        <button type="submit" className="submit-btn">
           Add Pickle
         </button>
       </form>
-      {message && <p className="mt-4 text-green-600">{message}</p>}
+      {message && <p className="submit-message">{message}</p>}
     </div>
   );
 };

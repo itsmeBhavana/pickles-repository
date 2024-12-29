@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #264653; /* Dark background */
-  color: #ffffff;
+  color: #f7f6e7;
   padding: 1rem 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100vw;
@@ -11,11 +11,15 @@
 
 .header-container {
   margin: 0 20px;
+  display: flex;
 }
 
 .store-title {
   font-size: 1.5rem;
   font-weight: bold;
+  width: 150px;
+  margin: 0 10px;
+  color: #f7f6e7;
 }
 
 .nav-container {
@@ -35,7 +39,7 @@
 }
 
 .nav-links a {
-  color: #2a9d8f;
+  color: #f7f6e7;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
@@ -76,6 +80,7 @@
 @media (max-width: 480px) {
   .store-title {
     font-size: 1.25rem;
+    margin: 0px;
   }
 
   .nav-links {

@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
 import VendorDashboard from "./pages/VendorDashboard";
 import PrivateRoute from "./PrivateRoute";
 import Login from "./pages/Login";
@@ -22,17 +21,15 @@ function App() {
             <Route path="/login" element={<Login />} />
             {/* Secured Vendor Route */}
             <Route
-              path="/vendor"
+              path="/dashboard"
               element={
-                <PrivateRoute allowedRoles={["vendor"]}>
+                <PrivateRoute>
                   <VendorDashboard />
                 </PrivateRoute>
               }
             />
-
             {/* Secured Admin Route */}
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
         </div>

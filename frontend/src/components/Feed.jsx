@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Feed.css";
+import Loader from "./Loader";
 
 const Feed = () => {
   const [pickles, setPickles] = useState([]);
@@ -23,7 +24,7 @@ const Feed = () => {
 
     fetchPickles();
   }, []);
-  if (loading) return <p>Loading pickles...</p>;
+  if (loading) return <Loader />;
 
   // Group pickles by category
   const picklesByCategory = pickles.reduce((groups, pickle) => {
@@ -38,7 +39,6 @@ const Feed = () => {
   return (
     <main className="feed" id="feed">
       <div>
-        <h2>Menu</h2>
         {Object.keys(picklesByCategory).map((category) => (
           <div key={category} className="category-section">
             <h2 className="category-title">Our {category}s</h2>
