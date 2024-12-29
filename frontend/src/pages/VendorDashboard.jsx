@@ -38,7 +38,7 @@ const VendorDashboard = () => {
           },
         }
       );
-      setMessage(`Pickle "${response.name}" added successfully!`);
+      setMessage(`Pickle "${response.data.data.name}" added successfully!`);
       setFormData({
         name: "",
         description: "",
